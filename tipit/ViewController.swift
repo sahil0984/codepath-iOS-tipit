@@ -32,10 +32,17 @@ class ViewController: UIViewController {
     
     var billAmount: Double = 0.0
     
+    var themeLightColor: UIColor = UIColor(red:230/255, green: 253/255, blue: 120/255, alpha: 1.0)
+    var themeDarkColor: UIColor = UIColor(red:196/255, green: 216/255, blue: 103/255, alpha: 1.0)
+    var themeDarkestColor: UIColor = UIColor(red:130/255, green: 147/255, blue: 59/255, alpha: 1.0)
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        navigationController.navigationBar.barTintColor = themeDarkColor
+        navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:themeDarkestColor]
+
         //tipLabel.text = "$0.00"
         //totalLabel.text = "$0.00"
         //totalBy2Label.text = "$0.00"

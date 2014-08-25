@@ -16,6 +16,22 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var defaultTipControl: UISegmentedControl!
     
+    var themeLightColor: UIColor = UIColor(red:230/255, green: 253/255, blue: 120/255, alpha: 1.0)
+    var themeDarkColor: UIColor = UIColor(red:196/255, green: 216/255, blue: 103/255, alpha: 1.0)
+    var themeDarkestColor: UIColor = UIColor(red:130/255, green: 147/255, blue: 59/255, alpha: 1.0)
+
+    override func viewWillAppear(animated: Bool) {
+        //var themeLightColor = UIColor(red:230/255, green: 253/255, blue: 120/255, alpha: 1.0)
+        //var themeDarkColor = UIColor(red:196/255, green: 216/255, blue: 103/255, alpha: 1.0)
+        
+        self.view.backgroundColor = themeLightColor
+        presetTip0Field.backgroundColor = themeLightColor
+        presetTip1Field.backgroundColor = themeLightColor
+        presetTip2Field.backgroundColor = themeLightColor
+        
+        updateSettingsPage()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,7 +51,6 @@ class SettingsViewController: UIViewController {
             defaultTipControl.selectedSegmentIndex = 0
         }
         
-        updateSettingsPage()
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,20 +99,47 @@ class SettingsViewController: UIViewController {
         defaultTipControl.setTitle("default", forSegmentAtIndex: defaultTipControl.selectedSegmentIndex)
         
         //presetTip0Field.backgroundColor = UIColor.blueColor()
-        presetTip0Field.borderStyle = UITextBorderStyle.Line
+        //presetTip0Field.borderStyle = UITextBorderStyle.Line
         switch defaultTipControl.selectedSegmentIndex{
         case 0:
-            presetTip0Field.borderStyle = UITextBorderStyle.Line
-            presetTip1Field.borderStyle = UITextBorderStyle.RoundedRect
-            presetTip2Field.borderStyle = UITextBorderStyle.RoundedRect
+            //presetTip0Field.borderStyle = UITextBorderStyle.Line
+            //presetTip1Field.borderStyle = UITextBorderStyle.RoundedRect
+            //presetTip2Field.borderStyle = UITextBorderStyle.RoundedRect
+            
+            presetTip0Field.backgroundColor = themeDarkestColor
+            presetTip1Field.backgroundColor = themeLightColor
+            presetTip2Field.backgroundColor = themeLightColor
+            
+            presetTip0Field.textColor = themeLightColor
+            presetTip1Field.textColor = themeDarkestColor
+            presetTip2Field.textColor = themeDarkestColor
+
         case 1:
-            presetTip0Field.borderStyle = UITextBorderStyle.RoundedRect
-            presetTip1Field.borderStyle = UITextBorderStyle.Line
-            presetTip2Field.borderStyle = UITextBorderStyle.RoundedRect
+            //presetTip0Field.borderStyle = UITextBorderStyle.RoundedRect
+            //presetTip1Field.borderStyle = UITextBorderStyle.Line
+            //presetTip2Field.borderStyle = UITextBorderStyle.RoundedRect
+            
+            presetTip0Field.backgroundColor = themeLightColor
+            presetTip1Field.backgroundColor = themeDarkestColor
+            presetTip2Field.backgroundColor = themeLightColor
+            
+            presetTip0Field.textColor = themeDarkestColor
+            presetTip1Field.textColor = themeLightColor
+            presetTip2Field.textColor = themeDarkestColor
+            
         case 2:
-            presetTip0Field.borderStyle = UITextBorderStyle.RoundedRect
-            presetTip1Field.borderStyle = UITextBorderStyle.RoundedRect
-            presetTip2Field.borderStyle = UITextBorderStyle.Line
+            //presetTip0Field.borderStyle = UITextBorderStyle.RoundedRect
+            //presetTip1Field.borderStyle = UITextBorderStyle.RoundedRect
+            //presetTip2Field.borderStyle = UITextBorderStyle.Line
+            
+            presetTip0Field.backgroundColor = themeLightColor
+            presetTip1Field.backgroundColor = themeLightColor
+            presetTip2Field.backgroundColor = themeDarkestColor
+            
+            presetTip0Field.textColor = themeDarkestColor
+            presetTip1Field.textColor = themeDarkestColor
+            presetTip2Field.textColor = themeLightColor
+            
         default:
             presetTip0Field.borderStyle = UITextBorderStyle.Line
         }

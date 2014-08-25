@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "tipit/SettingsViewController.swift"
-            timestampString = "430524836.946835"
+            timestampString = "430635250.749876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "updateSettingsPage()"
             landmarkType = "5">
          </BreakpointContent>
