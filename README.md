@@ -8,7 +8,7 @@ Pre-bootcamp project, with all the optionals completed,
  - Add a light/dark color theme to the settings view. In viewWillAppear, update views with the correct theme colors. [DONE]
  - Added Animations and formatting to improve the user experience. [DONE]
 
-Walkthrough of twitterCafe: <br> <br>
+Walkthrough of Tipit: <br> <br>
 ![Video Walkthrough](tipit.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
