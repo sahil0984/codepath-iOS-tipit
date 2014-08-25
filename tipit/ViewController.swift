@@ -15,6 +15,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     
+    @IBOutlet weak var totalBy2Label: UILabel!
+    @IBOutlet weak var totalBy3Label: UILabel!
+    @IBOutlet weak var totalBy4Label: UILabel!
+    
+    @IBOutlet weak var splitBy1Label: UILabel!
+    @IBOutlet weak var splitBy2Label: UILabel!
+    @IBOutlet weak var splitBy3Label: UILabel!
+    @IBOutlet weak var splitBy4Label: UILabel!
+    
+    @IBOutlet weak var totalAmountsView: UIView!
+    
     var presetTip0: Int = 18
     var presetTip1: Int = 20
     var presetTip2: Int = 25
@@ -25,10 +36,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        tipLabel.text = "$0.00"
-        totalLabel.text = "$0.00"
+        //tipLabel.text = "$0.00"
+        //totalLabel.text = "$0.00"
+        //totalBy2Label.text = "$0.00"
+        //totalBy3Label.text = "$0.00"
+        //totalBy4Label.text = "$0.00"
         
-        
+        self.defaultViewAnimationState()
+
         println("view loaded")
         var currentDateTime = NSDate()
         println(currentDateTime)
@@ -50,11 +65,17 @@ class ViewController: UIViewController {
             billAmount = 0.0;
         }
         
-        billField.text = NSString(format: "%.2f", billAmount)
+        if (billAmount != 0.0) {
+            billField.text = NSString(format: "%.2f", billAmount)
+        } else {
+            billField.text = ""
+        }
         
         
         updateViewControls()
         updateViewFields()
+        
+        animateViews()
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,6 +85,8 @@ class ViewController: UIViewController {
 
     @IBAction func onEditingChanged(sender: AnyObject) {
         updateViewFields()
+        
+        animateViews()
     }
 
     @IBAction func onTap(sender: AnyObject) {
@@ -75,7 +98,7 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
         println("view will appear")
         
-        
+        // Optionally initialize the property to a desired starting value
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -111,6 +134,10 @@ class ViewController: UIViewController {
         var tip = billAmount * Double(tipPercentage) * 0.01
         var total = billAmount + tip
         
+        var totalBy2 = total/2
+        var totalBy3 = total/3
+        var totalBy4 = total/4
+        
         //tipLabel.text = "$\(tip)"
         //totalLabel.text = "$\(total)"
         
@@ -119,6 +146,9 @@ class ViewController: UIViewController {
         
         tipLabel.text = currencyFormatter.stringFromNumber(tip)
         totalLabel.text = currencyFormatter.stringFromNumber(total)
+        totalBy2Label.text = currencyFormatter.stringFromNumber(totalBy2)
+        totalBy3Label.text = currencyFormatter.stringFromNumber(totalBy3)
+        totalBy4Label.text = currencyFormatter.stringFromNumber(totalBy4)
         
         var defaults = NSUserDefaults.standardUserDefaults()
         defaults.setValue(billAmount, forKey: "lastBillAmount")
@@ -128,6 +158,34 @@ class ViewController: UIViewController {
         let formatter = NSNumberFormatter()
             formatter.numberStyle = .CurrencyStyle
             return formatter
+    }
+    
+    func animateViews () {
+        if  (billField.text != "" && billField.text != "0.00") {
+            UIView.animateWithDuration(0.4, animations: {
+                self.billField.transform = CGAffineTransformMakeTranslation(0, 0)
+                self.tipControl.transform = CGAffineTransformMakeTranslation(0, 0)
+                self.totalAmountsView.transform = CGAffineTransformMakeTranslation(0, 0)
+
+                self.tipControl.alpha = 1
+                self.totalAmountsView.alpha = 1
+
+            })
+        } else {
+            UIView.animateWithDuration(0.4, animations: {
+                self.defaultViewAnimationState()
+            })
+        }
+    }
+    
+    func defaultViewAnimationState () {
+        self.billField.transform = CGAffineTransformMakeTranslation(0, 80)
+        self.tipControl.transform = CGAffineTransformMakeTranslation(0, 80)
+        self.totalAmountsView.transform = CGAffineTransformMakeTranslation(0, 80)
+        
+        self.tipControl.alpha = 0
+        self.totalAmountsView.alpha = 0
+        
     }
 }
 
